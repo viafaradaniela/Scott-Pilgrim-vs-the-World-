@@ -27,36 +27,36 @@ class Navegador {
 
     mousePressed() {
         const p = this.getCurrentPantalla();
-        if (p && p.pantalla.mousePressed) {
+        if (p !== undefined && p.pantalla.mousePressed) {
             p.pantalla.mousePressed()
         }
     }
 
     mouseReleased() {
         const p = this.getCurrentPantalla();
-        if (p && p.pantalla.mouseReleased) {
+        if (p !== undefined && p.pantalla.mouseReleased) {
             p.pantalla.mouseReleased()
         }
     }
 
     keyPressed() {
         const p = this.getCurrentPantalla();
-        if (p && p.pantalla.keyPressed) {
+        if (p !== undefined && p.pantalla.keyPressed) {
             p.pantalla.keyPressed()
         }
     }
 
     keyReleased() {
         const p = this.getCurrentPantalla();
-        if (p && p.pantalla.keyReleased) {
+        if (p !== undefined && p.pantalla.keyReleased) {
             p.pantalla.keyReleased()
         }
     }
 
     onFinish() {
         const p = this.getCurrentPantalla();
-        if (p && p.pantalla.onFinsih) {
-            p.pantalla.onFinsih()
+        if (p  !== undefined&& p.pantalla.onFinish) {
+            p.pantalla.onFinish()
             p.isSetup = false;
         }
     }
@@ -76,18 +76,21 @@ class Navegador {
 
     next() {
         if (this.index + 1 < this.pantallas.length) {
+            this.onFinish();
             this.index++;
         }
     }
 
     back() {
         if (this.index - 1 >= 0) {
+            this.onFinish();
             this.index--;
         }
     }
 
     goIndex(index) {
         if (this.index >= 0 && this.index < this.pantallas.length) {
+            this.onFinish();
             this.index = index
         }
     }
@@ -96,10 +99,11 @@ class Navegador {
         var index = -1;
         this.pantallas.forEach((pantalla, i)=>{
             if(pantalla.name === name){
-                index = il
+                index = i;
             }
         })
-        if(índex !== -1){
+
+        if(index !== -1){
             this.goIndex(index)
         }
     }
