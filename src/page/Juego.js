@@ -3,11 +3,13 @@ class Juego {
     constructor(nav) {
         this.nav = nav;
         this.app = nav.app;
+        this.escenario = new Escenario(this.app, configLevel1)
     }
 
 
     draw(){ 
-        this.app.circle(100, 100, 100, 100)
+    
+        this.escenario.draw()
     }
 
 

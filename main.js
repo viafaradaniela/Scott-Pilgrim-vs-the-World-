@@ -6,9 +6,9 @@ function setup() {
   createCanvas(1200, 700);
 
   navegador = new Navegador(this);
+  navegador.add(new Juego(navegador), "Juego")
   navegador.add(new Inicio(navegador))
   navegador.add(new Seleccion(navegador))
-  navegador.add(new Juego(navegador), "Juego")
 
   navegador.setup();
 }
