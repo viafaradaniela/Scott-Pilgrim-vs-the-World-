@@ -11,28 +11,31 @@ class Escenario {
             this.views.push(view);
         })
 
-        const celdaWidth = 50;
-        const celdaHeight = 50;
+        this.celdaWidth = 50;
+        this.celdaHeight = 50;
+
+        this.filas = 14;
+        this.columnas = 24;
 
 
-        for (let j = 0; j < 14; j++) {
-            for (let i = 0; i < 24; i++) {
+        for (let j = 0; j < this.filas; j++) {
+            for (let i = 0; i < this.columnas; i++) {
                 const index = this.celdas.length;
-                const x = (i * celdaWidth) + celdaWidth / 2;
-                const y = (j * celdaHeight) + celdaHeight / 2;
+                const x = (i * this.celdaWidth) + this.celdaWidth / 2;
+                const y = (j * this.celdaHeight) + this.celdaHeight / 2;
                 const pos = { x, y }
                 const location = {
                     fila: j, columna: i
                 }
 
-                const type = (index+j)%2===0?0:1;
+                const typeDefault = (index + j) % 2 === 0 ? 0 : 1;
+                const type = config.celdas &&config.celdas[index] ?config.celdas[index] :typeDefault ;
 
                 const newCelda = new Celda(this, pos, location, index, type);
 
                 this.celdas.push(newCelda);
             }
         }
-
 
     }
 
@@ -43,6 +46,27 @@ class Escenario {
         })
     }
 
-    
+    mousePressed(){
+        const x = this.app.mouseX;
+        const y = this.app.mouseY;
+        const celda = this.getCeldaPos(x, y);
+        celda.type = celda.type === CELDA.MURO1 ?CELDA.MURO2:CELDA.MURO1;
+    }
+
+    getCelda(columna, fila) {
+        const index = (fila * this.columnas) + columna;
+        const celda = this.celdas[index]
+        return celda;
+    }
+
+    getCeldaPos(x, y) {
+        const columna = Math.floor(x / this.celdaWidth);
+        const fila = Math.floor(y / this.celdaHeight);
+        return this.getCelda(columna, fila)
+    }
+
+    getCeldaIndex(index) {
+        return this.celdas[index]
+    }
 
 }
