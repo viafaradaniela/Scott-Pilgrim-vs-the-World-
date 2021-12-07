@@ -50,7 +50,8 @@ class Escenario {
         const x = this.app.mouseX;
         const y = this.app.mouseY;
         const celda = this.getCeldaPos(x, y);
-        celda.type = celda.type === CELDA.MURO1 ?CELDA.MURO2:CELDA.MURO1;
+        const keyValue = parseInt(this.app.key);
+        celda.type = keyValue;
     }
 
     getCelda(columna, fila) {
