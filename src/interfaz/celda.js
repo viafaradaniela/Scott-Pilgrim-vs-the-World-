@@ -31,6 +31,13 @@ class Celda {
             y: this.pos.y
         }
     }
+
+    getLocation(){
+        return {
+            columna: this.location.columna,
+            fila: this.location.fila
+        }
+    }
 }
 
 

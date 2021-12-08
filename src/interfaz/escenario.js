@@ -20,6 +20,7 @@ class Escenario {
 
         for (let j = 0; j < this.filas; j++) {
             for (let i = 0; i < this.columnas; i++) {
+                
                 const index = this.celdas.length;
                 const x = (i * this.celdaWidth) + this.celdaWidth / 2;
                 const y = (j * this.celdaHeight) + this.celdaHeight / 2;
