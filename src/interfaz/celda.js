@@ -1,5 +1,5 @@
 class Celda {
-    constructor(escenario, pos, location, index, type) {
+    constructor(escenario, pos, location, index, type,typeDefault) {
         this.escenario = escenario;
         this.app = escenario.app;
         this.location = location;
@@ -8,13 +8,21 @@ class Celda {
         this.height = 100;
         this.index = index;
         this.type = type;
+        this.typeDefault = typeDefault;
         this.views = escenario.views;
     }
 
     draw() {
+
+        this.app.imageMode(this.app.CENTER)
+
+        if (this.type === CELDA.MONEDA || this.type === CELDA.ARMA || this.type === CELDA.VIDA) {
+            const celView = this.getViewIndex(this.typeDefault);
+            this.app.image(celView, this.pos.x, this.pos.y)
+        }
+
         const view = this.getView();
         if (view !== undefined) {
-            this.app.imageMode(this.app.CENTER)
             this.app.image(view, this.pos.x, this.pos.y)
         }
 
@@ -25,6 +33,10 @@ class Celda {
         return this.views[this.type];
     }
 
+    getViewIndex(index) {
+        return this.views[index];
+    }
+
     getPos() {
         return {
             x: this.pos.x,
@@ -32,7 +44,7 @@ class Celda {
         }
     }
 
-    getLocation(){
+    getLocation() {
         return {
             columna: this.location.columna,
             fila: this.location.fila

@@ -2,15 +2,50 @@ class Jugador extends Personaje {
 
     constructor(escenario, index, view) {
         super(escenario, index, view)
+
+        this.isMoveUp = false;
+        this.isMoveDown = false;
+        this.isMoveLeft = false;
+        this.isMoveRight = false;
+
+        this.puntuacion = 0;
     }
 
-    goRelativeCelda(columna, fila){
-        const l = this.celda.getLocation();
-        const celda = this.escenario.getCelda(l.columna + columna, l.fila + fila);
-        if(celda !== undefined && celda.type < CELDA.MURO1){
-            this.setCelda(celda)
+    changeCelda() {
+        if (this.celda.type === CELDA.MONEDA) {
+            //Aqui recoge moneda
+            this.puntuacion += 1;
+            this.celda.type = this.celda.typeDefault;
         }
-     
+
+        if (this.celda.type === CELDA.VIDA) {
+            //Aqui recoge vida
+            this.lives += 1;
+            this.celda.type = this.celda.typeDefault;
+        }
+
+        if (this.celda.type === CELDA.ARMA) {
+            //Aqui recoge arma
+           
+            this.celda.type = this.celda.typeDefault;
+        }
+    }
+
+   
+
+    slide() {
+        if (this.isMoveUp === true) {
+            this.goRelativeCelda(0, -1)
+        }
+        if (this.isMoveDown === true) {
+            this.goRelativeCelda(0, 1)
+        }
+        if (this.isMoveLeft === true) {
+            this.goRelativeCelda(-1, 0)
+        }
+        if (this.isMoveRight === true) {
+            this.goRelativeCelda(1, 0)
+        }
     }
 
     keyPressed() {
@@ -18,24 +53,42 @@ class Jugador extends Personaje {
         const key = this.app.key.toLowerCase();
 
         if (key === "w") {
-            this.goRelativeCelda(0,-1)
+            this.isMoveUp = true;
         }
 
         if (key === "s") {
-            this.goRelativeCelda(0,1)
+            this.isMoveDown = true;
         }
 
         if (key === "a") {
-            this.goRelativeCelda(-1,0)
+            this.viewDirection = 1;
+            this.isMoveLeft = true;
         }
 
         if (key === "d") {
-            this.goRelativeCelda(1,0)
+            this.viewDirection = -1;
+            this.isMoveRight = true;
         }
 
     }
 
     keyReleased() {
+        const key = this.app.key.toLowerCase();
 
+        if (key === "w") {
+            this.isMoveUp = false;
+        }
+
+        if (key === "s") {
+            this.isMoveDown = false;
+        }
+
+        if (key === "a") {
+            this.isMoveLeft = false;
+        }
+
+        if (key === "d") {
+            this.isMoveRight = false;
+        }
     }
 }

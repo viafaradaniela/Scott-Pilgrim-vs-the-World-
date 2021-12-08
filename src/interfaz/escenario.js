@@ -20,7 +20,7 @@ class Escenario {
 
         for (let j = 0; j < this.filas; j++) {
             for (let i = 0; i < this.columnas; i++) {
-                
+
                 const index = this.celdas.length;
                 const x = (i * this.celdaWidth) + this.celdaWidth / 2;
                 const y = (j * this.celdaHeight) + this.celdaHeight / 2;
@@ -32,7 +32,7 @@ class Escenario {
                 const typeDefault = (index + j) % 2 === 0 ? 0 : 1;
                 const type = config.celdas &&config.celdas[index] ?config.celdas[index] :typeDefault ;
 
-                const newCelda = new Celda(this, pos, location, index, type);
+                const newCelda = new Celda(this, pos, location, index, type, typeDefault);
 
                 this.celdas.push(newCelda);
             }
@@ -52,7 +52,8 @@ class Escenario {
         const y = this.app.mouseY;
         const celda = this.getCeldaPos(x, y);
         const keyValue = parseInt(this.app.key);
-        celda.type = keyValue;
+      //  celda.type = keyValue;
+      console.log(celda.index)
     }
 
     getCelda(columna, fila) {
