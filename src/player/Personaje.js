@@ -99,4 +99,11 @@ class Personaje {
 
         return isSobre;
     }
+
+    getPos() {
+        return {
+            x: this.pos.x + 0,
+            y: this.pos.y + 0
+        }
+    }
 }

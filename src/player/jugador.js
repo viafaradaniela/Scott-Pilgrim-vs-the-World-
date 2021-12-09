@@ -9,6 +9,10 @@ class Jugador extends Personaje {
         this.isMoveRight = false;
 
         this.puntuacion = 0;
+
+        this.isArmado = false;
+
+        this.armas = [];
     }
 
     changeCelda() {
@@ -26,12 +30,12 @@ class Jugador extends Personaje {
 
         if (this.celda.type === CELDA.ARMA) {
             //Aqui recoge arma
-           
+            this.isArmado = true;
             this.celda.type = this.celda.typeDefault;
         }
     }
 
-   
+
 
     slide() {
         if (this.isMoveUp === true) {
@@ -46,6 +50,15 @@ class Jugador extends Personaje {
         if (this.isMoveRight === true) {
             this.goRelativeCelda(1, 0)
         }
+    }
+
+    mousePressed() {
+        if(this.isArmado === true){
+            const pos = { x: this.app.mouseX, y: this.app.mouseY }
+            const arma = new Arma(this, this.celda.getViewIndex(CELDA.ARMA), pos);
+            this.armas.push(arma);
+        }
+      
     }
 
     keyPressed() {

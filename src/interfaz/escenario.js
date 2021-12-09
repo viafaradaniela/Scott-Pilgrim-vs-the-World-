@@ -14,6 +14,9 @@ class Escenario {
         this.celdaWidth = 50;
         this.celdaHeight = 50;
 
+        this.addX = 0;
+        this.addY = 50;
+
         this.filas = 14;
         this.columnas = 24;
 
@@ -23,7 +26,7 @@ class Escenario {
 
                 const index = this.celdas.length;
                 const x = (i * this.celdaWidth) + this.celdaWidth / 2;
-                const y = (j * this.celdaHeight) + this.celdaHeight / 2;
+                const y = (j * this.celdaHeight) + this.celdaHeight / 2 + this.addY;
                 const pos = { x, y }
                 const location = {
                     fila: j, columna: i
@@ -48,7 +51,7 @@ class Escenario {
     }
 
     mousePressed(){
-        const x = this.app.mouseX;
+        const x = this.app.mouseX ;
         const y = this.app.mouseY;
         const celda = this.getCeldaPos(x, y);
         const keyValue = parseInt(this.app.key);
@@ -63,8 +66,8 @@ class Escenario {
     }
 
     getCeldaPos(x, y) {
-        const columna = Math.floor(x / this.celdaWidth);
-        const fila = Math.floor(y / this.celdaHeight);
+        const columna = Math.floor((x -this.addX) / this.celdaWidth);
+        const fila = Math.floor((y - this.addY) / this.celdaHeight);
         return this.getCelda(columna, fila)
     }
 

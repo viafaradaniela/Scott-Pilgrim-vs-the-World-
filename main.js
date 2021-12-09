@@ -3,7 +3,7 @@ var navegador;
 
 function setup() {
 
-  createCanvas(1200, 700);
+  createCanvas(1200, 750);
 
   navegador = new Navegador(this);
   navegador.add(new Juego(navegador, configLevel1), "Juego")
