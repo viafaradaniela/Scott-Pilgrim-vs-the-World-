@@ -3,9 +3,14 @@ class Juego {
     constructor(nav, config) {
         this.nav = nav;
         this.app = nav.app;
-        this.escenario = new Escenario(this.app, config)
+        this.config = config;
+       
+    }
 
-        this.jugador = new Jugador(this.escenario, 118, "./img/players/ramona.png")
+    setup() {
+
+        const config = this.config;
+        this.escenario = new Escenario(this.app, config)
 
         this.enemigos = [];
 
@@ -15,19 +20,30 @@ class Juego {
             this.enemigos.push(enemigo)
         }
 
-
-
         this.editor = new Editor(this.escenario, this.enemigos)
+
+        const viewPersonaje = this.nav.config.gender === "man" ? "./img/players/scott.png" : "./img/players/ramona.png";
+        this.jugador = new Jugador(this.escenario, 118, viewPersonaje, this.nav)
+
+        this.taskbar = new TaskBar(this.jugador, this.nav);
+
+        console.log("EJECUTO SETUP")
+
     }
 
 
     draw() {
-        this.escenario.draw()
+        this.escenario.draw();
+        this.taskbar.draw();
 
         for (let i = 0; i < this.enemigos.length; i++) {
             const enemigo = this.enemigos[i];
             enemigo.draw()
             enemigo.keyGenerator()
+
+            if (this.app.dist(this.jugador.pos.x, this.jugador.pos.y, enemigo.pos.x, enemigo.pos.y) <= 25){
+                this.jugador.colision();
+            }
         }
 
         this.jugador.draw();
@@ -54,16 +70,19 @@ class Juego {
         for (let i = this.jugador.armas.length - 1; i >= 0; i--) {
             const arma = this.jugador.armas[i];
             if (arma.destroy === true) {
-                this.jugador.armas.splice(i, 2)
+                this.jugador.armas.splice(i, 1)
             }
         }
 
         for (let i = this.enemigos.length - 1; i >= 0; i--) {
             const enemigo = this.enemigos[i];
             if (enemigo.lives <= 0) {
-                this.enemigos.splice(i, 2);
-                console.log("ELIMINAR", this.enemigos)
+                this.enemigos.splice(i, 1);
             }
+        }
+
+        if(this.enemigos.length === 0){
+            this.nav.next()
         }
 
 
@@ -88,4 +107,3 @@ class Juego {
         this.jugador.keyReleased();
     }
 }
-// ME ESCRIBES POS WHATSAPP CUANDO VUELVAS

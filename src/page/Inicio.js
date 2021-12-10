@@ -3,9 +3,9 @@ class Inicio {
     constructor(nav) {
         this.nav = nav;
         this.app = nav.app;
-        this.background = this.app.loadImage("./img/inicio-background.png")
+        this.background = this.app.loadImage("./img/inicio.jpg")
 
-        this.btnInicio = new Boton(this.app, {x:this.app.width/2, y:500}, "./img/btn-inicio.png")
+        this.btnInicio = new Boton(this.app, { x: this.app.width * .7, y: 600 }, "./img/btn-inicio.png")
     }
 
     draw() {
@@ -17,7 +17,7 @@ class Inicio {
     }
 
     mousePressed() {
-        if(this.btnInicio.isOver()){
+        if (this.btnInicio.isOver()) {
             this.nav.next();
         }
     }

@@ -33,7 +33,7 @@ class Escenario {
                 }
 
                 const typeDefault = (index + j) % 2 === 0 ? 0 : 1;
-                const type = config.celdas &&config.celdas[index] ?config.celdas[index] :typeDefault ;
+                const type = config.celdas && config.celdas[index] ? config.celdas[index] : typeDefault;
 
                 const newCelda = new Celda(this, pos, location, index, type, typeDefault);
 
@@ -50,25 +50,35 @@ class Escenario {
         })
     }
 
-    mousePressed(){
-        const x = this.app.mouseX ;
+    mousePressed() {
+        const x = this.app.mouseX;
         const y = this.app.mouseY;
         const celda = this.getCeldaPos(x, y);
         const keyValue = parseInt(this.app.key);
-      //  celda.type = keyValue;
-      console.log(celda.index)
+        //  celda.type = keyValue;
+     //   console.log(celda.index)
     }
 
     getCelda(columna, fila) {
-        const index = (fila * this.columnas) + columna;
-        const celda = this.celdas[index]
-        return celda;
+        if (columna < this.columnas && fila < this.filas) {
+            const index = (fila * this.columnas) + columna;
+            const celda = this.celdas[index]
+            return celda;
+        }else{
+            return undefined
+        }
+
     }
 
     getCeldaPos(x, y) {
-        const columna = Math.floor((x -this.addX) / this.celdaWidth);
-        const fila = Math.floor((y - this.addY) / this.celdaHeight);
-        return this.getCelda(columna, fila)
+        if(x <= this.app.width && y <= this.app.height){
+            const columna = Math.floor((x - this.addX) / this.celdaWidth);
+            const fila = Math.floor((y - this.addY) / this.celdaHeight);
+            return this.getCelda(columna, fila)
+        }else{
+            return undefined;
+        }
+     
     }
 
     getCeldaIndex(index) {

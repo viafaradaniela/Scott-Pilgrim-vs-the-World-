@@ -1,11 +1,16 @@
 class Navegador {
-    
+
     constructor(app) {
         this.app = app;
+        this.indexAnterior = 0;
         this.index = 0;
         this.pantallas = [];
-    } 
- 
+
+        this.config = {
+            gender: "man"
+        }
+    }
+
     setup() {
         const p = this.getCurrentPantalla()
         if (p !== undefined && p.isSetup === false && p.pantalla.setup) {
@@ -55,10 +60,17 @@ class Navegador {
 
     onFinish() {
         const p = this.getCurrentPantalla();
-        if (p  !== undefined&& p.pantalla.onFinish) {
-            p.pantalla.onFinish()
+        if (p !== undefined ){
+
+            if(p.pantalla.onFinish) {
+                p.pantalla.onFinish()
+             
+            }
+
             p.isSetup = false;
-        }
+
+        } 
+     
     }
 
     add(pantalla, name) {
@@ -77,6 +89,7 @@ class Navegador {
     next() {
         if (this.index + 1 < this.pantallas.length) {
             this.onFinish();
+            this.indexAnterior = this.index + 0;
             this.index++;
         }
     }
@@ -84,6 +97,7 @@ class Navegador {
     back() {
         if (this.index - 1 >= 0) {
             this.onFinish();
+            this.indexAnterior = this.index + 0;
             this.index--;
         }
     }
@@ -91,19 +105,21 @@ class Navegador {
     goIndex(index) {
         if (this.index >= 0 && this.index < this.pantallas.length) {
             this.onFinish();
+            this.indexAnterior = this.index + 0;
+
             this.index = index
         }
     }
 
-    goName(name){
+    goName(name) {
         var index = -1;
-        this.pantallas.forEach((pantalla, i)=>{
-            if(pantalla.name === name){
+        this.pantallas.forEach((pantalla, i) => {
+            if (pantalla.name === name) {
                 index = i;
             }
         })
 
-        if(index !== -1){
+        if (index !== -1) {
             this.goIndex(index)
         }
     }

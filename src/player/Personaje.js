@@ -22,18 +22,33 @@ class Personaje {
 
         this.viewDirection = 1;
 
+        this.invulnerable = false;
+
     }
 
     draw() {
 
-        this.app.imageMode(this.app.CENTER);
-        this.app.push();
-        this.app.translate(this.pos.x, this.pos.y);
-        this.app.scale(this.viewDirection, 1)
-        this.app.image(this.view, 0, 0)
-        this.app.pop();
+        if (this.invulnerable === true) {
+            if (this.app.frameCount % 5 === 0) {
+                this.app.imageMode(this.app.CENTER);
+                this.app.push();
+                this.app.translate(this.pos.x, this.pos.y);
+                this.app.scale(this.viewDirection, 1)
+                this.app.image(this.view, 0, 0)
+                this.app.pop();
+            }
+
+        } else {
+            this.app.imageMode(this.app.CENTER);
+            this.app.push();
+            this.app.translate(this.pos.x, this.pos.y);
+            this.app.scale(this.viewDirection, 1)
+            this.app.image(this.view, 0, 0)
+            this.app.pop();
+        }
 
         this.movimiento()
+
     }
 
     changeCelda() {
@@ -105,5 +120,9 @@ class Personaje {
             x: this.pos.x + 0,
             y: this.pos.y + 0
         }
+    }
+
+    destroy(){
+        
     }
 }
