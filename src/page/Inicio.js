@@ -7,7 +7,7 @@ class Inicio {
 
         this.btnInicio = new Boton(this.app, { x: this.app.width * .7, y: 600 }, "./img/btn-inicio.png")
 
-        //this.musicBackground = new Sonido("./sonido/black sheep.mp3");
+        this.musicBackground = new Sonido("./sonido/black sheep.mp3");
         this.musicBackground.setVolumen(.08)
         this.musicBackground.setLoop(true);
      
