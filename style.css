@@ -15,6 +15,7 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
+  background: black;
 }
 
 
@@ -22,6 +23,5 @@ canvas {
   display: block;
   margin: 0;
   padding: 0;
-  width: 100% !important;
-  height:auto !important;
+  
 }
