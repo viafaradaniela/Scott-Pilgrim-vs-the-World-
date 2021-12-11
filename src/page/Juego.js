@@ -23,7 +23,8 @@ class Juego {
         this.editor = new Editor(this.escenario, this.enemigos)
 
         const viewPersonaje = this.nav.config.gender === "man" ? "./img/players/scott.png" : "./img/players/ramona.png";
-        this.jugador = new Jugador(this.escenario, 118, viewPersonaje, this.nav)
+        const celdaPos = this.config.jugador;
+        this.jugador = new Jugador(this.escenario, celdaPos, viewPersonaje, this.nav)
 
         this.taskbar = new TaskBar(this.jugador, this.nav);
 

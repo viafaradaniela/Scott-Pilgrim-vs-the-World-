@@ -1,4 +1,5 @@
 const configLevel1 = {
+    jugador: 118,
     views: [
         "./img/nivel1/celda-1.png",
         "./img/nivel1/celda-2.png",
@@ -27,12 +28,13 @@ const configLevel1 = {
     enemigos: [
         { index: 232, view: "./img/enemigos/enemigo1.png", movimientos: [4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1] },
         { index: 82, view: "./img/enemigos/secuas1.png", movimientos: [4, 4, 4, 4, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 1] },
-        { index: 80, view: "./img/enemigos/secuas1.png", movimientos: [3,3,2,3,2,4,4,4,2,3,2,3,3,1,1,1,1,4,4,4] },
-        { index: 320, view: "./img/enemigos/secuas1.png", movimientos: [3,3,2,3,2,4,4,4,2,3,2,3,3,1,1,1,1,4,4,4] }
+        { index: 80, view: "./img/enemigos/secuas1.png", movimientos: [3, 3, 2, 3, 2, 4, 4, 4, 2, 3, 2, 3, 3, 1, 1, 1, 1, 4, 4, 4] },
+        { index: 296, view: "./img/enemigos/secuas1.png", movimientos: [3, 3, 3, 3, 3, 1, 3, 1, 1, 3, 3, 1, 1, 4, 4, 4, 1, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 1, 4, 4, 4, 2, 4, 4, 4, 4, 1, 3, 3, 3] }
     ]
 }
 
 const configLevel2 = {
+    jugador: 80,
     views: [
         "./img/nivel2/celda-1.png",
         "./img/nivel2/celda-2.png",
@@ -64,6 +66,7 @@ const configLevel2 = {
 }
 
 const configLevel3 = {
+    jugador: 80,
     views: [
         "./img/nivel3/celda-1.png",
         "./img/nivel3/celda-1.png",
@@ -95,6 +98,7 @@ const configLevel3 = {
 }
 
 const configLevel4 = {
+    jugador: 80,
     views: [
         "./img/nivel4/celda-2.png",
         "./img/nivel4/celda-2.png",
@@ -126,6 +130,7 @@ const configLevel4 = {
 }
 
 const configLevel5 = {
+    jugador: 80,
     views: [
         "./img/nivel5/celda-1.png",
         "./img/nivel5/celda-2.png",
@@ -156,6 +161,7 @@ const configLevel5 = {
     ]
 }
 const configLevel6 = {
+    jugador: 80,
     views: [
         "./img/nivel6/celda-1.png",
         "./img/nivel6/celda-2.png",
