@@ -7,8 +7,14 @@ class Navegador {
         this.pantallas = [];
 
         this.config = {
-            gender: "man"
+            gender: "man",
+            puntuacion: 0
         }
+
+        this.soundCoin = new Sonido("./sonido/moneda.mp3");
+        this.soundArma = new Sonido("./sonido/arma.mp3");
+        this.soundVida = new Sonido("./sonido/vida.mp3");
+
     }
 
     setup() {
@@ -60,17 +66,17 @@ class Navegador {
 
     onFinish() {
         const p = this.getCurrentPantalla();
-        if (p !== undefined ){
+        if (p !== undefined) {
 
-            if(p.pantalla.onFinish) {
+            if (p.pantalla.onFinish) {
                 p.pantalla.onFinish()
-             
+
             }
 
             p.isSetup = false;
 
-        } 
-     
+        }
+
     }
 
     add(pantalla, name) {

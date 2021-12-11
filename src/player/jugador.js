@@ -23,18 +23,21 @@ class Jugador extends Personaje {
             //Aqui recoge moneda
             this.puntuacion += 100;
             this.celda.type = this.celda.typeDefault;
+            this.nav.soundCoin.play();
         }
 
         if (this.celda.type === CELDA.VIDA) {
             //Aqui recoge vida
             this.lives += 1;
             this.celda.type = this.celda.typeDefault;
+            this.nav.soundVida.play();
         }
 
         if (this.celda.type === CELDA.ARMA) {
             //Aqui recoge arma
             this.isArmado = true;
             this.celda.type = this.celda.typeDefault;
+            this.nav.soundArma.play();
         }
     }
 

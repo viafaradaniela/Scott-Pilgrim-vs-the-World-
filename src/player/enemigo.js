@@ -8,6 +8,7 @@ class Enemigo extends Personaje {
         this.step = 0;
         this.movimientos = movimientos;
         this.automatic = true;
+        this.moneda = 100;
     }
 
 
@@ -24,10 +25,12 @@ class Enemigo extends Personaje {
             }
 
             if (movimiento === MOV.LEFT) {
+                this.viewDirection = 1;
                 this.goRelativeCelda(-1, 0)
             }
 
             if (movimiento === MOV.RIGHT) {
+                this.viewDirection = -1;
                 this.goRelativeCelda(1, 0)
             }
 

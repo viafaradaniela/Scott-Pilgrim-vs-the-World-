@@ -4,7 +4,7 @@ class Juego {
         this.nav = nav;
         this.app = nav.app;
         this.config = config;
-       
+
     }
 
     setup() {
@@ -27,6 +27,8 @@ class Juego {
 
         this.taskbar = new TaskBar(this.jugador, this.nav);
 
+        this.jugador.puntuacion = this.nav.config.puntuacion;
+
         console.log("EJECUTO SETUP")
 
     }
@@ -41,7 +43,7 @@ class Juego {
             enemigo.draw()
             enemigo.keyGenerator()
 
-            if (this.app.dist(this.jugador.pos.x, this.jugador.pos.y, enemigo.pos.x, enemigo.pos.y) <= 25){
+            if (this.app.dist(this.jugador.pos.x, this.jugador.pos.y, enemigo.pos.x, enemigo.pos.y) <= 25) {
                 this.jugador.colision();
             }
         }
@@ -49,15 +51,18 @@ class Juego {
         this.jugador.draw();
         this.jugador.slide();
 
+
+        //Matantando enemigos
         for (let j = 0; j < this.jugador.armas.length; j++) {
             const arma = this.jugador.armas[j];
             arma.draw();
 
             for (let e = 0; e < this.enemigos.length; e++) {
                 const enemigo = this.enemigos[e];
-                const distanciaX = arma.pos.x - enemigo.pos.x;
-                const distanciaY = arma.pos.y - enemigo.pos.y;
-                const distancia = Math.sqrt((distanciaX * distanciaX) * (distanciaY * distanciaY));
+            
+                const distancia = this.app.dist(arma.pos.x, arma.pos.y, enemigo.pos.x, enemigo.pos.y);
+
+                //Validando colicion con el arma
                 if (arma.carga === true && distancia <= 25) {
                     arma.carga = false;
                     enemigo.lives--;
@@ -67,6 +72,7 @@ class Juego {
             }
         }
 
+        //Eliminando armas disparadas
         for (let i = this.jugador.armas.length - 1; i >= 0; i--) {
             const arma = this.jugador.armas[i];
             if (arma.destroy === true) {
@@ -74,14 +80,19 @@ class Juego {
             }
         }
 
+        //Removiendo enemigos muertos
         for (let i = this.enemigos.length - 1; i >= 0; i--) {
             const enemigo = this.enemigos[i];
+            //Validando muete del enemigo
             if (enemigo.lives <= 0) {
+                this.jugador.puntuacion += enemigo.moneda;
                 this.enemigos.splice(i, 1);
             }
         }
 
-        if(this.enemigos.length === 0){
+        //Siguiente nivel
+        if (this.enemigos.length === 0) {
+            this.nav.config.puntuacion = this.jugador.puntuacion;
             this.nav.next()
         }
 
@@ -94,7 +105,7 @@ class Juego {
 
     mousePressed() {
         this.escenario.mousePressed();
-        //  this.editor.mousePressed()
+        this.editor.mousePressed()
         this.jugador.mousePressed()
     }
 

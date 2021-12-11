@@ -26,7 +26,9 @@ const configLevel1 = {
     ],
     enemigos: [
         { index: 232, view: "./img/enemigos/enemigo1.png", movimientos: [4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1] },
-        { index: 82, view: "./img/enemigos/enemigo2.png", movimientos: [4, 4, 4, 4, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 1] }
+        { index: 82, view: "./img/enemigos/secuas1.png", movimientos: [4, 4, 4, 4, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 1] },
+        { index: 80, view: "./img/enemigos/secuas1.png", movimientos: [3,3,2,3,2,4,4,4,2,3,2,3,3,1,1,1,1,4,4,4] },
+        { index: 320, view: "./img/enemigos/secuas1.png", movimientos: [3,3,2,3,2,4,4,4,2,3,2,3,3,1,1,1,1,4,4,4] }
     ]
 }
 

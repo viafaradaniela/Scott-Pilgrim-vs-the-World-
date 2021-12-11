@@ -56,7 +56,7 @@ class Escenario {
         const celda = this.getCeldaPos(x, y);
         const keyValue = parseInt(this.app.key);
         //  celda.type = keyValue;
-     //   console.log(celda.index)
+     console.log(celda.index)
     }
 
     getCelda(columna, fila) {
