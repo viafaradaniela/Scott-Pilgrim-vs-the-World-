@@ -8,7 +8,8 @@ class Navegador {
 
         this.config = {
             gender: "man",
-            puntuacion: 0
+            puntuacion: 0,
+            vidas: 3
         }
 
         this.soundCoin = new Sonido("./sonido/moneda.mp3");

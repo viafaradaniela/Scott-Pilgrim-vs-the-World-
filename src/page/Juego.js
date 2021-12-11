@@ -29,6 +29,7 @@ class Juego {
         this.taskbar = new TaskBar(this.jugador, this.nav);
 
         this.jugador.puntuacion = this.nav.config.puntuacion;
+        this.jugador.lives = this.nav.config.vidas;
 
         console.log("EJECUTO SETUP")
 
@@ -94,6 +95,8 @@ class Juego {
         //Siguiente nivel
         if (this.enemigos.length === 0) {
             this.nav.config.puntuacion = this.jugador.puntuacion;
+            this.nav.config.vidas = this.jugador.lives; 
+
             this.nav.next()
         }
 
