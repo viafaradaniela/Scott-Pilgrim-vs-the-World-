@@ -32,7 +32,7 @@ class Editor {
         this.enemigos.forEach(
            enemigo => {
                if (enemigo.isOver()) {
-                   this.enemigoSelect = enemigo;
+                   //this.enemigoSelect = enemigo;
                }
            }
         )
