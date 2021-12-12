@@ -26,15 +26,15 @@ class Editor {
         if (this.enemigoSelect !== undefined) {
             const celda = this.escenario.getCeldaPos(this.app.mouseX, this.app.mouseY);
             this.enemigoSelect.setCeldaPos(celda);
-        }
+       }
 
 
         this.enemigos.forEach(
-            enemigo => {
-                if (enemigo.isOver()) {
-                    this.enemigoSelect = enemigo;
-                }
-            }
+           enemigo => {
+               if (enemigo.isOver()) {
+                   this.enemigoSelect = enemigo;
+               }
+           }
         )
 
 

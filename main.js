@@ -19,7 +19,7 @@ function setup() {
 
   navegador.add(new Ko(navegador), "PERDIO");
 
-  navegador.goIndex(9)
+  navegador.goIndex(0)
 
   navegador.setup();
 
