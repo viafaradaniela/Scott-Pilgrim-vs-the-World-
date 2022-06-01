@@ -5,10 +5,10 @@ class Inicio {
         this.app = nav.app;
         this.background = this.app.loadImage("./img/inicio.jpg")
 
-        this.btnInicio = new Boton(this.app, { x: this.app.width * .7, y: 600 }, "./img/btn-inicio.png")
+        this.btnInicio = new Boton(this.app, { x: this.app.width * .5, y: 600 }, "./img/btn-inicio.png")
 
-        this.musicBackground = new Sonido("./sonido/black sheep.mp3");
-        this.musicBackground.setVolumen(.08)
+        this.musicBackground = new Sonido("./sonido/hedwig_s_theme.mp3");
+        this.musicBackground.setVolumen(.09)
         this.musicBackground.setLoop(true);
      
     }

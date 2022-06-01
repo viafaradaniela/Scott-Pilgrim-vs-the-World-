@@ -15,6 +15,7 @@ function setup() {
   navegador.add(new Juego(navegador, configLevel4))
   navegador.add(new Juego(navegador, configLevel5))
   navegador.add(new Juego(navegador, configLevel6))
+
   navegador.add(new Win(navegador))
 
   navegador.add(new Ko(navegador), "PERDIO");

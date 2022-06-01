@@ -22,14 +22,21 @@ class Juego {
 
         this.editor = new Editor(this.escenario, this.enemigos)
 
-        const viewPersonaje = this.nav.config.gender === "man" ? "./img/players/scott.png" : "./img/players/ramona.png";
+        const viewPersonaje = "./img/players/harry.png"  
+        const viewPersonaje2 = "./img/players/hermione.png";
         const celdaPos = this.config.jugador;
+        const celdaPos2 = this.config.jugador2;
         this.jugador = new Jugador(this.escenario, celdaPos, viewPersonaje, this.nav)
+        this.jugador2 = new Jugador2 (this.escenario,celdaPos2, viewPersonaje2, this.nav)
 
         this.taskbar = new TaskBar(this.jugador, this.nav);
+        this.taskbar = new TaskBar(this.jugador2, this.nav);
 
         this.jugador.puntuacion = this.nav.config.puntuacion;
         this.jugador.lives = this.nav.config.vidas;
+
+        this.jugador2.puntuacion = this.nav.config.puntuacion;
+        this.jugador2.lives = this.nav.config.vidas;
 
         console.log("EJECUTO SETUP")
 
@@ -48,10 +55,16 @@ class Juego {
             if (this.app.dist(this.jugador.pos.x, this.jugador.pos.y, enemigo.pos.x, enemigo.pos.y) <= 25) {
                 this.jugador.colision();
             }
+
+            if (this.app.dist(this.jugador2.pos.x, this.jugador2.pos.y, enemigo.pos.x, enemigo.pos.y) <= 25) {
+                this.jugador2.colision();
+            }
         }
 
         this.jugador.draw();
         this.jugador.slide();
+        this.jugador2.draw();
+        this.jugador2.slide();
 
 
         //Matantando enemigos
@@ -70,15 +83,40 @@ class Juego {
                     enemigo.lives--;
                     arma.destroy = true;
                 }
-
             }
         }
+
+            //Matantando enemigos
+            for (let j = 0; j < this.jugador2.armas.length; j++) {
+                const arma = this.jugador2.armas[j];
+                arma.draw();
+    
+                for (let e = 0; e < this.enemigos.length; e++) {
+                    const enemigo = this.enemigos[e];
+                
+                    const distancia = this.app.dist(arma.pos.x, arma.pos.y, enemigo.pos.x, enemigo.pos.y);
+    
+                    //Validando colicion con el arma
+                    if (arma.carga === true && distancia <= 25) {
+                        arma.carga = false;
+                        enemigo.lives--;
+                        arma.destroy = true;
+                    }
+                }
+            }
 
         //Eliminando armas disparadas
         for (let i = this.jugador.armas.length - 1; i >= 0; i--) {
             const arma = this.jugador.armas[i];
             if (arma.destroy === true) {
                 this.jugador.armas.splice(i, 1)
+            }
+        }
+
+        for (let i = this.jugador2.armas.length - 1; i >= 0; i--) {
+            const arma = this.jugador2.armas[i];
+            if (arma.destroy === true) {
+                this.jugador2.armas.splice(i, 1)
             }
         }
 
@@ -92,6 +130,15 @@ class Juego {
             }
         }
 
+        for (let i = this.enemigos.length - 1; i >= 0; i--) {
+            const enemigo = this.enemigos[i];
+            //Validando muete del enemigo
+            if (enemigo.lives <= 0) {
+                this.jugador2.puntuacion += enemigo.moneda;
+                this.enemigos.splice(i, 1);
+            }
+        }
+
         //Siguiente nivel
         if (this.enemigos.length === 0) {
             this.nav.config.puntuacion = this.jugador.puntuacion;
@@ -99,6 +146,14 @@ class Juego {
 
             this.nav.next()
         }
+
+        if (this.enemigos.length === 0) {
+            this.nav.config.puntuacion = this.jugador2.puntuacion;
+            this.nav.config.vidas = this.jugador2.lives; 
+
+            this.nav.next()
+        }
+
 
 
 
@@ -111,14 +166,17 @@ class Juego {
         this.escenario.mousePressed();
         this.editor.mousePressed()
         this.jugador.mousePressed()
+        this.jugador2.mousePressed()
     }
 
     keyPressed() {
         this.editor.keyPressed();
         this.jugador.keyPressed();
+        this.jugador2.keyPressed();
     }
 
     keyReleased() {
         this.jugador.keyReleased();
+        this.jugador2.keyReleased();
     }
 }

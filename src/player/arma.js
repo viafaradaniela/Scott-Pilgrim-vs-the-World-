@@ -25,7 +25,7 @@ class Arma {
         this.app.imageMode(this.app.CENTER);
         this.app.push();
         this.app.translate(this.pos.x, this.pos.y);
-        this.app.rotate(this.app.radians(this.rotate))
+      //  this.app.rotate(this.app.radians(this.rotate))
         this.app.image(this.view, 0, 0);
         this.app.pop();
 

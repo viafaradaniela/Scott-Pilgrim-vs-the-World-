@@ -11,7 +11,9 @@ class Jugador extends Personaje {
 
         this.puntuacion = 0;
 
-        this.isArmado = false;
+        this.isArmado = true;
+
+        this.isCapa = false;
 
         this.armas = [];
 
@@ -39,7 +41,14 @@ class Jugador extends Personaje {
             this.celda.type = this.celda.typeDefault;
             this.nav.soundArma.play();
         }
+        if (this.celda.type === CELDA.CAPA) {
+            //Aqui recoge capa
+            this.isCapa = true;
+            this.celda.type = this.celda.typeDefault;
+            this.nav.soundArma.play();
+        }
     }
+
 
 
 
@@ -67,6 +76,7 @@ class Jugador extends Personaje {
 
     }
 
+
     keyPressed() {
 
         const key = this.app.key.toLowerCase();
@@ -89,6 +99,11 @@ class Jugador extends Personaje {
             this.isMoveRight = true;
         }
 
+        if (key === "c") {
+            console.log("c");
+                this.invulnerable = true;
+        }
+
     }
 
     keyReleased() {
@@ -109,6 +124,11 @@ class Jugador extends Personaje {
         if (key === "d") {
             this.isMoveRight = false;
         }
+        if (key === "c") { setTimeout(() => {
+            this.invulnerable = false;
+        }, 1000)
+           
+        }
     }
 
 
@@ -122,7 +142,7 @@ class Jugador extends Personaje {
 
             setTimeout(() => {
                 this.invulnerable = false;
-            }, 1000)
+            }, 2000)
         }
 
     }

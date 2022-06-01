@@ -23,13 +23,15 @@ class Personaje {
         this.viewDirection = 1;
 
         this.invulnerable = false;
+        this.capa = false;
+    
 
     }
 
     draw() {
 
-        if (this.invulnerable === true) {
-            if (this.app.frameCount % 5 === 0) {
+       if (this.invulnerable === true) {
+            if (this.app.frameCount % 15 === 0) {
                 this.app.imageMode(this.app.CENTER);
                 this.app.push();
                 this.app.translate(this.pos.x, this.pos.y);

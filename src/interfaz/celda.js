@@ -60,5 +60,6 @@ const CELDA = {
     MONEDA: 3,
     VIDA: 4,
     MURO1: 5,
-    MURO2: 6
+    MURO2: 6,
+    CAPA: 7
 }
