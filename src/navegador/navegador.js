@@ -136,3 +136,4 @@ class Navegador {
     }
 
 }
+//export default Navegador;
